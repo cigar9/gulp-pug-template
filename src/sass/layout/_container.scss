@@ -1,0 +1,5 @@
+.l-container {
+  @include maxWidth($width-default);
+  margin-left: auto;
+  margin-right: auto;
+}

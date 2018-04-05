@@ -1,0 +1,5 @@
+.u-blink{
+  @include hover{
+    animation: blink .3s linear;
+  }
+}

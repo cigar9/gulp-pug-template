@@ -1,0 +1,110 @@
+// メディアクエリ （デスクトップファースト）
+// --------------------
+@mixin mqLg {
+  @media only screen and (max-width: $widthLg + px) {
+    @content;
+  }
+}
+
+@mixin mqMd {
+  @media only screen and (max-width: $widthMd + px) {
+    @content;
+  }
+}
+
+@mixin mqSm {
+  @media only screen and (max-width: $widthSm + px) {
+    @content;
+  }
+}
+
+// フォントサイズ(vw指定)
+// --------------------
+@function get_vw($size, $viewport: 375) {
+  $rate: 100 / $viewport;
+  @return $rate * $size * 1vw * 10;
+}
+
+// フォントサイズ
+// --------------------
+@mixin fontSize($sizeValue, $type: pc) {
+  @if $type == 'pc' {
+    font-size: ($sizeValue * 10) + px;
+    font-size: ($sizeValue * 1) + rem;
+  } @else if $type == 'sp' {
+    font-size: $sizeValue * 10px;
+    font-size: get_vw($sizeValue);
+  }
+}
+
+// vw計算
+// --------------------
+@function calcVw($number) {
+  @return ($number / 750 * 100) + vw;
+}
+
+// トランジション
+// --------------------
+@mixin transition($property) {
+  transition-property: $property;
+  transition-duration: 0.6s;
+  transition-timing-function: $ease-easeOut;
+}
+
+// 最大幅にパディングを足す
+// --------------------
+@mixin maxWidth($width) {
+  max-width: $width + $gutter-default * 2;
+  padding-left: $gutter-default;
+  padding-right: $gutter-default;
+  @include mqMd {
+    padding-left: $gutter-default-md;
+    padding-right: $gutter-default-md;
+  }
+  @include mqSm {
+    padding-left: $gutter-default-sm;
+    padding-right: $gutter-default-sm;
+  }
+}
+
+// placeholderのcss
+// --------------------
+@mixin placeholderColor($color) {
+  &:placeholder-shown {
+    color: $color;
+  }
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+  &:-moz-placeholder {
+    color: $color;
+    opacity: 1;
+  }
+  &::-moz-placeholder {
+    color: $color;
+    opacity: 1;
+  }
+  &:-ms-input-placeholder {
+    color: $color;
+  }
+}
+
+// hover
+// --------------------
+@mixin hover {
+  &:hover {
+    @content;
+  }
+}
+
+@mixin mincho {
+  font-family: 'Hiragino Mincho ProN', 游明朝, 'Yu Mincho', YuMincho, HGS明朝E,
+    メイリオ, Meiryo, serif;
+  @media all and (-ms-high-contrast: none) {
+    font-family: HGS明朝E, メイリオ, Meiryo, serif;
+  }
+}
+
+@mixin boxShadow {
+  box-shadow: 0 1px 6px rgba(#000, 0.15);
+}

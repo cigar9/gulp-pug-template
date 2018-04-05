@@ -1,0 +1,13 @@
+extend /_template/_default
+append variables
+  //- 変更可能
+  - const pageTitle= "トップページ";
+  - const pageDescription= site.description;
+  //- - const pageKeywords= site.keywords; キーワードは必要なし。
+  //- 任意
+  - const pageOgpTitle= pageTitle;
+  - const pageOgpImage= site.ogpImage;
+  - const pageOgpType= "website";
+
+block content
+  p コンテンツ

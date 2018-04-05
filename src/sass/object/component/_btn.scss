@@ -1,0 +1,18 @@
+.c-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.c-btn--primary {
+  color: #fff;
+  background: $color-theme;
+  border-radius: 500px;
+  border: 1px solid $color-theme;
+  @include transition((color, background));
+  &:hover {
+    color: $color-theme;
+    background: none;
+  }
+}

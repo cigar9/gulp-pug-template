@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+// icomoon関係
+@font-face {
+  font-family: 'icomoon';
+  src: url('../fonts/icomoon.eot?sn88zz');
+  src: url('../fonts/icomoon.eot?sn88zz#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.woff2?sn88zz') format('woff2'),
+    url('../fonts/icomoon.ttf?sn88zz') format('truetype'),
+    url('../fonts/icomoon.woff?sn88zz') format('woff'),
+    url('../fonts/icomoon.svg?sn88zz#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^='icon-'],
+[class*=' icon-'] {
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

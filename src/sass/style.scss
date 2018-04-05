@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+/* =========================================================
+ Foundation
+========================================================= */
+
+@import 'foundation/variables';
+@import 'foundation/mixin';
+@import 'foundation/animation';
+@import 'foundation/reset';
+@import 'foundation/icomoon';
+@import 'foundation/vendor';
+@import 'foundation/vendor-mod';
+@import 'foundation/base';
+
+/* =========================================================
+ Layout
+========================================================= */
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/main';
+@import 'layout/container';
+
+/* =========================================================
+ Object
+========================================================= */
+
+/* ---------------------------------------------------------
+ Component
+--------------------------------------------------------- */
+// 複数ページに渡って使いまわす、粒度の小さいコンポーネントを追加していく
+@import 'object/component/btn';
+@import 'object/component/list';
+@import 'object/component/tel-link';
+@import 'object/component/form';
+
+/* ---------------------------------------------------------
+ Project
+--------------------------------------------------------- */
+// コンポーネントより粒度の大きいもの（とあるページでしか使わないものなど）を追加していく
+// @import 'object/project/hogehoge';
+
+/* ---------------------------------------------------------
+ Utility
+--------------------------------------------------------- */
+
+@import 'object/utility/align';
+@import 'object/utility/clearfix';
+@import 'object/utility/float';
+@import 'object/utility/font';
+@import 'object/utility/margin';
+@import 'object/utility/blink';
+@import 'object/utility/br';
+@import 'object/utility/hide';

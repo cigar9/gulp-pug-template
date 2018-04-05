@@ -1,0 +1,9 @@
+// telリンクをブラウザ幅が大きい場合向こうにする。
+// ※IE11未満は効かない
+
+a[href^='tel:'] {
+  pointer-events: none;
+  @include mqMd {
+    pointer-events: fill;
+  }
+}
