@@ -2,6 +2,7 @@ const gulp = require('gulp')
 ;(browser = require('browser-sync')),
   (plumber = require('gulp-plumber')),
   (notify = require('gulp-notify')),
+  (cache = require('gulp-cached')),
   (fs = require('fs')),
   (sass = require('gulp-sass')),
   (postcss = require('gulp-postcss')),
@@ -27,6 +28,7 @@ const paths = {
   js: 'src/js/**/*.js',
   images: 'src/images/**/*.+(jpg|jpeg|png)',
   svg: 'src/images/**/*.svg',
+  fonts: 'src/fonts/**/*',
   dist: 'dist'
 }
 
@@ -51,10 +53,12 @@ gulp.task('pug', () => {
           '/' +
           path
             .relative(file.base, file.path.replace(/.pug$/, '.html'))
+            .replace('\\', '/')
             .replace(/index\.html$/, '')
         return local
       })
     )
+    .pipe(cache('pug'))
     .pipe(
       pug({
         local: local,
@@ -70,7 +74,7 @@ gulp.task('pug', () => {
     )
 })
 
-gulp.task('pug-compile', () => {
+gulp.task('pug-compile-all', () => {
   const local = {
     site: JSON.parse(fs.readFileSync('src/pug/_data/site.json'))
   }
@@ -87,6 +91,7 @@ gulp.task('pug-compile', () => {
           '/' +
           path
             .relative(file.base, file.path.replace(/.pug$/, '.html'))
+            .replace('\\', '/')
             .replace(/index\.html$/, '')
         return local
       })
@@ -179,7 +184,7 @@ gulp.task('server', () => {
 // ファイルを監視
 gulp.task('watch', () => {
   gulp.watch(paths.pug, ['pug'])
-  gulp.watch(paths.pugCommon, ['pug-compile'])
+  gulp.watch(paths.pugCommon, ['pug-compile-all'])
   gulp.watch(paths.scss, ['sass'])
   gulp.watch(paths.js, ['webpack'])
 })
@@ -228,6 +233,21 @@ gulp.task('svg', () => {
 })
 
 /////////////////////////////////////////////////////////
+// fontsの処理
+/////////////////////////////////////////////////////////
+
+gulp.task('fonts', () => {
+  gulp
+    .src(paths.fonts)
+    .pipe(
+      plumber({
+        errorHandler: notify.onError('Error: <%= error.message %>')
+      })
+    )
+    .pipe(gulp.dest(paths.dist + '/fonts'))
+})
+
+/////////////////////////////////////////////////////////
 // コマンド
 /////////////////////////////////////////////////////////
 
@@ -235,7 +255,14 @@ gulp.task('svg', () => {
 gulp.task('default', ['watch', 'server'])
 
 // "gulp compile" でpugの全コンパイル
-gulp.task('compile', ['pug-compile'])
+gulp.task('compile', [
+  'pug-compile-all',
+  'images',
+  'svg',
+  'sass',
+  'webpack',
+  'fonts'
+])
 
 // "gulp imagemin" で画像の圧縮
 gulp.task('imagemin', ['images', 'svg'])
