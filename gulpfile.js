@@ -204,16 +204,21 @@ gulp.task('images', () => {
     )
     .pipe(newer(out))
     .pipe(
-      imagemin([
-        pngquant({
-          quality: '70-95',
-          speed: 1
-        }),
-        mozjpeg({
-          quality: 95,
-          progressive: true
-        })
-      ])
+      imagemin(
+        [
+          pngquant({
+            quality: '70-95',
+            speed: 1
+          }),
+          mozjpeg({
+            quality: 95,
+            progressive: true
+          })
+        ],
+        {
+          verbose: true
+        }
+      )
     )
     .pipe(gulp.dest(paths.dist + '/images'))
 })
