@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "google-maps": "^3.2.1",
-    "gsap": "^1.20.3",
+    "gsap": "^3.6.0",
     "imports-loader": "^0.7.1",
     "jquery": "^3.3.1",
     "jquery.easing": "^1.4.1",
